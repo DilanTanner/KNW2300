@@ -1,4 +1,5 @@
 import rxtxrobot.*;
+
 public class draft {
 		
 		final private static int PING_PIN = 5;
