@@ -1,2 +1,12 @@
 /* Comment, because every code needs an intro. This is our code for the ArduinoUno that we are using. The code will allow the processor to
 autonomously control our robot to complete several tasks as outlined in our project handout. So yeah, good luck to us ^.^ */ 
+
+import rxtxrobot.*;
+
+public class master
+{
+  public static void main (String...args)
+    {
+      //First line of code
+    }
+}
