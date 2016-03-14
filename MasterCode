@@ -2,6 +2,7 @@
 autonomously control our robot to complete several tasks as outlined in our project handout. So yeah, good luck to us ^.^ */ 
 
 import rxtxrobot.*;
+import Rxtxrobot.rxtxrobot.*;
 
 public class master
 {
