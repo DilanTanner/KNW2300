@@ -8,8 +8,8 @@ public class master
 {
   public static void main (String...args)
     {
-    RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
-		r.setPort("COM3"); // Set port to COM2 
-		r.connect(); 
+	RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
+	r.setPort("COM3"); // Set port to COM2 
+	r.connect(); 
     }
 }
