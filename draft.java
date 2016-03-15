@@ -3,65 +3,48 @@ import rxtxrobot.*;
 public class draft {
 	final private static int PING_PIN = 5;
 	static RXTXRobot r = new ArduinoUno();
-	public static void getPing() {
+	public static float getPing() {
 		for (int x=0; x < 10; ++x) 
 		{ 
 			r.refreshDigitalPins();
 			//Read the ping sensor value, which is connected to pin 12 
 			float ping = r.getPing(PING_PIN);
-			System.out.println("Response: " + ping + " cm"); 
 			r.sleep(300); 
+			return ping;
 		} 
 	}
-public static void getDumper (int Pin){
+public static void getBumper (int Pin){ //implement way to autonomously stop motors; needs to be constantly running? 
 	AnalogPin ping = r.getAnalogPin(Pin);
 	r.refreshAnalogPins(); // Cache the Analog pin information 
 	for (int x=0; x < 20; ++x) 
 		{ 
 			r.refreshAnalogPins(); 	
 			int bump = ping.getValue(); 
-			System.out.println("Bump is " + bump);
-			r.sleep(500);
+			r.sleep(500); //should it return anything??
 		}
 	} 	
-public static double WgetThermistorReading1(){ //Wind
+public static double getThermistorReading2(int pin){
 	int sum = 0;
 	int readingCount = 10;
 	for(int i = 0; i < readingCount; i++)
 		{
 			r.refreshAnalogPins(); 
-			int reading = r. getAnalogPin(4).getValue();
-			sum += reading;
-		}
-		return sum/readingCount;
-	}
-public static double WgetThermistorReading2(){
-	int sum = 0;
-	int readingCount = 10;
-	for(int i = 0; i < readingCount; i++)
-		{
-			r.refreshAnalogPins(); 
-			int reading = r. getAnalogPin(5).getValue();
+			int reading = r. getAnalogPin(pin).getValue();
 			sum += reading;
 		}
 	return sum/readingCount;
 	}
-public static double Wtranslate(double a){
-	double slope = -7.609540636;
-	double intercept = 735.8162544;
-	return (a-intercept)/slope;
-	}
 public static void measureWind (int Pin1, int Pin2){
 	for (int i = 0; i< 50; i ++){
-		double WthermistorReading1 = WgetThermistorReading1();
-		double WthermistorReading2 = WgetThermistorReading2();
+		double WthermistorReading1 = getThermistorReading();
+		double WthermistorReading2 = getThermistorReading2();
 		/*
 		System.out.println("The probe read the value:" + thermistorReading);
 		System.out.println("In volts:" + (thermistorReading * (5/1023)));
 		*/
-		double difference = Wtranslate(WthermistorReading1) - Wtranslate(WthermistorReading2);
-		System.out.println("In Temperature1: " + Wtranslate(WthermistorReading1));
-		System.out.println("In Temperature2: " + Wtranslate(WthermistorReading2)); 
+		double difference = translate(WthermistorReading1) - translate(WthermistorReading2);
+		System.out.println("In Temperature1: " + translate(WthermistorReading1));
+		System.out.println("In Temperature2: " + translate(WthermistorReading2)); 
 		System.out.println("In Temperature: " + difference+"\n");
 		}
 	}
