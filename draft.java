@@ -13,15 +13,16 @@ public class draft {
 			return ping;
 		} 
 	}
-public static void getBumper (int Pin){ //implement way to autonomously stop motors; needs to be constantly running? 
+public static void getBumper (int Pin){  
 	AnalogPin ping = r.getAnalogPin(Pin);
 	r.refreshAnalogPins(); // Cache the Analog pin information 
-	for (int x=0; x < 20; ++x) 
-		{ 
+	// for (int x=0; x < 20; ++x) 
+		// { 
 			r.refreshAnalogPins(); 	
 			int bump = ping.getValue(); 
-			r.sleep(500); //should it return anything??
-		}
+			r.sleep(500);
+			return bump;
+		// }
 	} 	
 public static double getThermistorReading2(int pin){
 	int sum = 0;
