@@ -10,10 +10,10 @@ public class draft {
 			//Read the ping sensor value, which is connected to pin 12 
 			float ping = r.getPing(PING_PIN);
 			r.sleep(300); 
-			return ping;
 		} 
+	return ping;
 	}
-public static void getBumper (int Pin){  
+public static int getBumper (int Pin){  
 	AnalogPin ping = r.getAnalogPin(Pin);
 	r.refreshAnalogPins(); // Cache the Analog pin information 
 	// for (int x=0; x < 20; ++x) 
@@ -37,8 +37,8 @@ public static double getThermistorReading2(int pin){
 	}
 public static void measureWind (int Pin1, int Pin2){
 	for (int i = 0; i< 50; i ++){
-		double WthermistorReading1 = getThermistorReading();
-		double WthermistorReading2 = getThermistorReading2();
+		double WthermistorReading1 = getThermistorReading(5);
+		double WthermistorReading2 = getThermistorReading2(6);
 		/*
 		System.out.println("The probe read the value:" + thermistorReading);
 		System.out.println("In volts:" + (thermistorReading * (5/1023)));
@@ -61,7 +61,7 @@ public static int getThermistorReading(int Pin){
 		}
 	return sum/readingCount;
 	}
-public static double translate(int a)
+public static double translate(double a)
 	{
 		double slope = -7.609540636; //to be modified
 		double intercept = 735.8162544; //to be modified
