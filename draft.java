@@ -1,8 +1,9 @@
 import rxtxrobot.*;
 
 public class draft {
-	final private static int PING_PIN = 5;
+	final private static int PING_PIN = 6;
 	static RXTXRobot r = new ArduinoUno();
+	static boolean stop = false;
 	public static float getPing() {
 		for (int x=0; x < 10; ++x) 
 		{ 
@@ -109,10 +110,56 @@ public static void runServo (int Pin, int rate)
 	r.sleep(1000);
 	//r.moveServo(RXTXRobot.SERVO1,0);	
 }
+static void turnRight(){
+		r.runEncodedMotor(RXTXRobot.MOTOR1, 255, 140, RXTXRobot.MOTOR2, 255, 140);
+		//r.runMotor(RXTXRobot.MOTOR1, 200, RXTXRobot.MOTOR2, 200, 1400);
+	}
+static void Avoid(){
+		Stop();
+		r.sleep(300);
+		turnRight();
+		r.sleep(300);
+		Move(5000);
+		r.sleep(300);
+		turnLeft();
+		r.sleep(300);
+		Move(8000);
+		r.sleep(300);
+		turnLeft();
+		r.sleep(300);
+		Move(5000);
+		r.sleep(300);
+		turnRight();
+		r.sleep(300);
+		
+	}
+static void turnRight(){
+		r.runEncodedMotor(RXTXRobot.MOTOR1, 255, 140, RXTXRobot.MOTOR2, 255, 140);
+		//r.runMotor(RXTXRobot.MOTOR1, 200, RXTXRobot.MOTOR2, 200, 1400);
+	}
+static void turnLeft(){
+		r.runEncodedMotor(RXTXRobot.MOTOR1, -255, 150, RXTXRobot.MOTOR2, -255, 150);
+		//r.runMotor(RXTXRobot.MOTOR1, -200, RXTXRobot.MOTOR2, -200, 1395);
+		
+	}
+static void Stop(){
+		r.runEncodedMotor(RXTXRobot.MOTOR1, 0, 0, RXTXRobot.MOTOR2, 0, 0);
+		//r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0, 0);
+		
+	}
+static void Move(int a){
+		r.runEncodedMotor(RXTXRobot.MOTOR1, -255, a, RXTXRobot.MOTOR2, 225, a);
+		//r.runMotor(RXTXRobot.MOTOR1, -255, RXTXRobot.MOTOR2, 225, a);
+	}
+static void MoveE(){
+		r.runMotor(RXTXRobot.MOTOR1, -255, RXTXRobot.MOTOR2, 225, 0);	
+	}
 public static void main (String[] args) 
 {
 	r.setPort("COM3");
 	r.connect();
+	r.attachMotor(RXTXRobot.MOTOR1, 9);
+	r.attachMotor(RXTXRobot.MOTOR2, 8);
 	r.close();
 }
 }
